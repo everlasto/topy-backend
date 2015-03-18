@@ -15,9 +15,14 @@ import java.util.Map;
 @RestController
 public class Login {
 
+    /*
+        Login authentication
+    */
     @RequestMapping("/signin")
     public LoginResponse login(
+            //Username
             @RequestParam(value = "name", required = true) String username,
+            //Password
             @RequestParam(value = "pass", required = true) String password
     ){
         LoginResponse response = new LoginResponse();

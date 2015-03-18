@@ -17,10 +17,28 @@ import java.util.Map;
 @RestController
 public class Signup {
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup/verify/")
+
+    /*
+        Verify valid username
+     */
+    public Boolean verify(
+            //Username
+            @RequestParam("name") String username
+    ){
+        return false;
+    }
+
+    /*
+        Create account
+     */
+    @RequestMapping(value = "/signup/add/"/*, method = RequestMethod.POST*/)
     public SignupResponse signup(
+            //Username
             @RequestParam(value = "name", required = true) String username,
+            //Password
             @RequestParam(value = "pass", required = true) String password,
+            //Social Data (linkedin)
             @RequestParam(value = "socialData", required = true) String socialData
     ){
         SignupResponse response = new SignupResponse();
@@ -34,6 +52,10 @@ public class Signup {
         }
         //--log acct creation, id, name, time
         return response;
+    }
+
+    private int userStatus(String status){
+        return 0;
     }
 
 }
