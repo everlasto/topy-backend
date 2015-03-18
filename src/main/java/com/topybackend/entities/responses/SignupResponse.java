@@ -8,4 +8,5 @@ public class SignupResponse extends LoginResponse {
     public SignupResponse() {
     }
 
+
 }

@@ -8,10 +8,11 @@ import java.util.Map;
  */
 public class LoginResponse {
     int status;
-    Map<String, Object> userData;
+    String user_name;
+    String user_id;
+    String user_pic;
 
     public LoginResponse() {
-        userData = new HashMap<String, Object>();
         status = -3;
     }
 
@@ -23,11 +24,27 @@ public class LoginResponse {
         this.status = status;
     }
 
-    public Map<String, Object> getUserData() {
-        return userData;
+    public String getUser_name() {
+        return user_name;
     }
 
-    public void setUserData(Map<String, Object> userData) {
-        this.userData = userData;
+    public void setUser_name(String user_name) {
+        this.user_name = user_name;
+    }
+
+    public String getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(String user_id) {
+        this.user_id = user_id;
+    }
+
+    public String getUser_pic() {
+        return user_pic;
+    }
+
+    public void setUser_pic(String user_pic) {
+        this.user_pic = user_pic;
     }
 }
