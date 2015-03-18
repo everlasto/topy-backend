@@ -13,11 +13,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class Application extends WebMvcConfigurerAdapter{
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/**");
+        registry.addInterceptor(new SecurityInterceptor()).addPathPatterns("/v1/**");
     }
 
     public static void main(String[] args) throws Exception {
-            String webPort = System.getProperty("PORT");
+            String webPort = System.getenv("PORT");
             if (webPort == null || webPort.isEmpty()) {
                 webPort = "8085";
             }
