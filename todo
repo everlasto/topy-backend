@@ -1,1 +1,17 @@
 #
+
+
+Steps:
+Login to heroku
+create new app, specify name and server region.
+git init in your directory of choice
+heroku git:remote -a <APP_NAME>
+heroku create
+heroku apps:rename <URL_APP_NAME>
+git add .
+git commit
+
+git push heroku master (for deployment)
+git push origin master (for git push)
+
+
