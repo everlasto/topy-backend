@@ -15,3 +15,96 @@ git push heroku master (for deployment)
 git push origin master (for git push)
 
 
+TODO:
+exchange key configuration on security interceptor
+
+Entities:
+USER
+	linkedin
+		name
+		id
+	past_teams
+	[
+		team_id
+		from_date
+		to_date
+		with
+	]
+	current_teams
+	[
+		team_id
+		from_date
+		to_date
+		with
+	]
+	honors
+	[
+		honor
+			title
+			text
+			link
+	]
+	skills
+	[
+		skill
+			id
+			name
+			groups [group(id, name)]
+	]
+	following
+		[team_id, from_date]
+	interested
+		[team_id, from_date]
+	domains
+	[
+		domain
+			id
+			name
+	]
+
+
+TEAM
+	id
+	name
+	from_date
+	to_date
+	owners
+	[
+		user_id
+	]
+	technologies
+		[technology(id,name)]
+	product
+	domains
+	[
+		domain
+			id
+			name
+	]
+	members
+	[
+		user_id
+		from_date
+		to_date
+	]
+	updates
+	[
+		update
+			id
+			title
+			text
+			date
+	]
+	likes
+	followers
+		[user_id]
+	interested
+		[user_id]
+	organization
+		id
+		name
+		link
+	requirements
+		?
+	characteristics
+		[badges]
