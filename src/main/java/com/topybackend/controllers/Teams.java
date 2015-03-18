@@ -15,7 +15,7 @@ public class Teams {
     /*
         Get team details for given id.
      */
-    @RequestMapping(value = "/profile/")
+    @RequestMapping(value = "/teamservice/profile/")
     public TeamDetailResponse getTeam(
             //Requester user id
             @RequestParam(value = "suid", required = true) String suid,

@@ -2,7 +2,6 @@ package com.topybackend.controllers;
 
 import com.topybackend.entities.responses.FeedResponse;
 import com.topybackend.entities.responses.HomeFeedResponse;
-import com.topybackend.entities.responses.ProfileResponse;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -14,7 +13,7 @@ public class Feeds {
     /*
     Get feed data for given feed id.
      */
-    @RequestMapping(value = "/feed/")
+    @RequestMapping(value = "/feedservice/feed/")
     public FeedResponse getFeed(
             //Requester user id
             @RequestParam(value = "suid", required = true) String suid,
@@ -27,7 +26,7 @@ public class Feeds {
     /*
     Get home page feeds.
      */
-    @RequestMapping(value = "/feed/home/")
+    @RequestMapping(value = "/feedservice/feed/home/")
     public HomeFeedResponse getHomeFeed(
             //Requester user id
             @RequestParam(value = "suid", required = true) String suid,

@@ -14,7 +14,7 @@ public class Profile {
     /*
         Get profile for given id.
      */
-    @RequestMapping(value = "/profile/")
+    @RequestMapping(value = "/userservice/profile/")
     public ProfileResponse getProfile(
             //Requester user id
             @RequestParam(value = "suid", required = true) String suid,

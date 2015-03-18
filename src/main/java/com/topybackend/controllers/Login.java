@@ -18,7 +18,7 @@ public class Login {
     /*
         Login authentication
     */
-    @RequestMapping("/signin")
+    @RequestMapping("/userservice/signin")
     public LoginResponse login(
             //Username
             @RequestParam(value = "name", required = true) String username,
@@ -28,11 +28,9 @@ public class Login {
         LoginResponse response = new LoginResponse();
         response.setStatus(StatusCodes.OK);
         if(response.getStatus() == StatusCodes.OK){
-            Map<String, Object> userData = new HashMap<String, Object>();
-            userData.put("userName", "_username");
-            userData.put("userId", "_userid");
-            userData.put("userPic", "");
-            response.setUserData(userData);
+            response.setUser_name("_username");
+            response.setUser_id("_id");
+            response.setUser_pic("_pic");
         }
         //--log login status, uid, time
         return response;

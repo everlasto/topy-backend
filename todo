@@ -18,9 +18,13 @@ git push origin master (for git push)
 TODO:
 exchange key configuration on security interceptor
 Update GETs to POSTS
+user in the team since? no schema
+api for organization
 
 Entities:
 USER
+	name
+	pic
 	linkedin
 		name
 		id
@@ -109,3 +113,15 @@ TEAM
 		?
 	characteristics
 		[badges]
+
+FEED: [
+	id
+	time
+	is_status
+	team_id
+	user_id
+	content
+	type
+	likes
+	media
+]
