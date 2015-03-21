@@ -2,18 +2,20 @@ package com.topybackend.entities.responses;
 
 
 import java.util.List;
+import org.springframework.data.annotation.Id;
 
 /**
  * Created by prashanth.a on 18/03/15.
  */
 public class TeamMinimalDetailResponse {
 
+    @Id
     String id;
     String name;
-    FeedResponse recent_update;
+    FeedResponse recentUpdate;
     //needed though we have list of followers
-    int followers_count;
-    int members_count;
+    int followersCount;
+    int membersCount;
 
     public TeamMinimalDetailResponse() {
     }
@@ -34,27 +36,36 @@ public class TeamMinimalDetailResponse {
         this.name = name;
     }
 
-    public FeedResponse getRecent_update() {
-        return recent_update;
+    public int getMembersCount() {
+        return membersCount;
     }
 
-    public void setRecent_update(FeedResponse recent_update) {
-        this.recent_update = recent_update;
+    public void setMembersCount(int membersCount) {
+        this.membersCount = membersCount;
     }
 
-    public int getFollowers_count() {
-        return followers_count;
+    public int getFollowersCount() {
+        return followersCount;
     }
 
-    public void setFollowers_count(int followers_count) {
-        this.followers_count = followers_count;
+    public void setFollowersCount(int followersCount) {
+        this.followersCount = followersCount;
     }
 
-    public int getMembers_count() {
-        return members_count;
+    public FeedResponse getRecentUpdate() {
+        return recentUpdate;
     }
 
-    public void setMembers_count(int members_count) {
-        this.members_count = members_count;
+    public void setRecentUpdate(FeedResponse recentUpdate) {
+        this.recentUpdate = recentUpdate;
+    }
+
+    @Override
+    public String toString() {
+        return "TeamMinimalDetailResponse{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
+

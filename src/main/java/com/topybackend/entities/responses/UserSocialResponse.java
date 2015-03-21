@@ -1,38 +1,25 @@
 package com.topybackend.entities.responses;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.Map;
+
 /**
  * Created by prashanth.a on 18/03/15.
  */
-public class UserSocialResponse {
+@Document(collection = "social")
+public class UserSocialResponse extends UserMinimalSocialResponse {
 
-    String id;
-    String type;
-    String name;
+    Map<String, Object> data;
 
     public UserSocialResponse() {
     }
 
-    public String getId() {
-        return id;
+    public Map<String, Object> getData() {
+        return data;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setData(Map<String, Object> data) {
+        this.data = data;
     }
 }

@@ -7,7 +7,7 @@ public class SkillsResponse {
 
     int skill_id;
     String skill_name;
-    int type;
+    int level;
 
     public SkillsResponse() {
     }
@@ -28,11 +28,14 @@ public class SkillsResponse {
         this.skill_name = skill_name;
     }
 
-    public int getType() {
-        return type;
+    public int getLevel() {
+        return level;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setLevel(int level) {
+        if(level <= 10)
+            this.level = level;
+        else
+            this.level = 0;
     }
 }

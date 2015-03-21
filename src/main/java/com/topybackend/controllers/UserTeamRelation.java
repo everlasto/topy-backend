@@ -1,22 +1,33 @@
 package com.topybackend.controllers;
 
-import com.topybackend.entities.responses.FeedResponse;
-import com.topybackend.entities.responses.TeamMinimalDetailResponse;
+import com.topybackend.datastores.ProfileRepository;
+import com.topybackend.datastores.TeamsRepository;
+import com.topybackend.entities.responses.*;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by prashanth.a on 18/03/15.
  */
+@RestController
 public class UserTeamRelation {
+
+    @Autowired
+    private ProfileRepository profileRepo;
+
+    @Autowired
+    private TeamsRepository teamRepo;
 
     /*
         Follow/Unfollow a team
      */
     @RequestMapping(value = "/userteamservice/follow/")
-    public Boolean followUnfollow(
+    public Object followUnfollow(
             //Requester user id
             @RequestParam(value = "suid", required = true) String suid,
             //Requesting team id
@@ -24,7 +35,22 @@ public class UserTeamRelation {
             //Did user request for follow or unfollow?
             @RequestParam(value = "unfollow") Boolean isUnfollow
     ){
-        return false;
+        //should update sessions once at client.
+        ProfileResponse profile = profileRepo.findById(suid);
+        List<TeamMinimalDetailResponse> followings = profile.getFollowings();
+        for(TeamMinimalDetailResponse team: followings){
+            if(team.getId().equals(tid)){
+                return new GenericBoolResponse(true);
+            }
+        }
+        TeamMinimalDetailResponse team = teamRepo.findById(tid);
+        if(team!=null && !team.getId().isEmpty()){
+            followings.add(team);
+            profile.setFollowings(followings);
+            profileRepo.save(profile);
+            return new GenericBoolResponse(true);
+        }
+        return new GenericBoolResponse(false);
     }
 
     /*
@@ -46,13 +72,20 @@ public class UserTeamRelation {
         Is given user following?
      */
     @RequestMapping(value = "/userteamservice/isFollow/")
-    public Boolean isFollow(
+    public Object isFollow(
             //Requester user id
             @RequestParam(value = "suid", required = true) String suid,
             //Requesting team id
             @RequestParam(value = "tid", required = true) String tid
     ){
-        return false;
+        ProfileResponse profile = profileRepo.findById(suid);
+        List<TeamMinimalDetailResponse> followings = profile.getFollowings();
+        for(TeamMinimalDetailResponse team: followings){
+            if(team.getId().equals(tid)){
+                return new GenericBoolResponse(true);
+            }
+        }
+        return new GenericBoolResponse(false);
     }
 
     /*
@@ -76,7 +109,8 @@ public class UserTeamRelation {
             //Requester user id
             @RequestParam(value = "suid", required = true) String suid
     ){
-        return null;
+        ProfileResponse profile = profileRepo.findById(suid);
+        return profile.getFollowings();
     }
 
     /*

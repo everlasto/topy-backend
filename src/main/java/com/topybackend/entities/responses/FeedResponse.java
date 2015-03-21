@@ -1,20 +1,50 @@
 package com.topybackend.entities.responses;
 
+import com.topybackend.constants.FeedTypes;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import javax.validation.constraints.NotNull;
+import org.springframework.data.annotation.Id;
+
 /**
  * Created by prashanth.a on 18/03/15.
  */
+@Document(collection = "feeds")
 public class FeedResponse {
+
+    @Id
     String id;
     int time;
-    boolean is_status;
-    String team_id;
-    String author_id;
+    boolean isStatus;
+    @NotNull
+    String teamId;
+    @NotNull
+    String authorId;
+    @NotNull
     String content;
     int type;
     int likes;
     String media;
 
+    @Transient
+    Object teamDetail;
+    @Transient
+    boolean canEdit;
+
     public FeedResponse() {
+        type = FeedTypes.INVALID;
+    }
+
+    @Transient
+    public static String getField(String fname){
+        try{
+            return FeedResponse.class.getDeclaredField(fname).toString().length()>0?fname:null;
+        }
+        catch (NoSuchFieldException e){
+            //--log invalid field type selected exception
+            return null;
+        }
     }
 
     public String getId() {
@@ -33,28 +63,28 @@ public class FeedResponse {
         this.time = time;
     }
 
-    public boolean isIs_status() {
-        return is_status;
+    public boolean isStatus() {
+        return isStatus;
     }
 
-    public void setIs_status(boolean is_status) {
-        this.is_status = is_status;
+    public void setStatus(boolean isStatus) {
+        this.isStatus = isStatus;
     }
 
-    public String getTeam_id() {
-        return team_id;
+    public String getTeamId() {
+        return teamId;
     }
 
-    public void setTeam_id(String team_id) {
-        this.team_id = team_id;
+    public void setTeamId(String teamId) {
+        this.teamId = teamId;
     }
 
-    public String getAuthor_id() {
-        return author_id;
+    public String getAuthorId() {
+        return authorId;
     }
 
-    public void setAuthor_id(String author_id) {
-        this.author_id = author_id;
+    public void setAuthorId(String authorId) {
+        this.authorId = authorId;
     }
 
     public String getContent() {
@@ -87,5 +117,21 @@ public class FeedResponse {
 
     public void setMedia(String media) {
         this.media = media;
+    }
+
+    public Object getTeamDetail() {
+        return teamDetail;
+    }
+
+    public void setTeamDetail(Object teamDetail) {
+        this.teamDetail = teamDetail;
+    }
+
+    public boolean isCanEdit() {
+        return canEdit;
+    }
+
+    public void setCanEdit(boolean canEdit) {
+        this.canEdit = canEdit;
     }
 }

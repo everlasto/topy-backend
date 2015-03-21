@@ -1,5 +1,8 @@
 package com.topybackend.entities.responses;
 
+import org.springframework.data.annotation.Transient;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,12 +10,27 @@ import java.util.List;
  */
 public class ProfileMinimalResponse {
 
+    String id;
     String name;
     String picture;
+    boolean working;
+    int jobProfile;
+    boolean drisler;
     List<TeamMinimalDetailResponse> currentTeams;
-    int followings_count;
+
+    @Transient
+    public int followingsCount;
 
     public ProfileMinimalResponse() {}
+
+    //Copy constructor
+    public ProfileMinimalResponse(ProfileResponse p) {
+        id = p.getId();
+        name = p.getName();
+        picture = p.getPicture();
+        currentTeams = p.getCurrentTeams();
+        followingsCount = p.getFollowings().size();
+    }
 
     public List<TeamMinimalDetailResponse> getCurrentTeams() {
         return currentTeams;
@@ -38,11 +56,45 @@ public class ProfileMinimalResponse {
         this.picture = picture;
     }
 
-    public int getFollowings_count() {
-        return followings_count;
+    public String getId() {
+        return id;
     }
 
-    public void setFollowings_count(int followings_count) {
-        this.followings_count = followings_count;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "ProfileMinimalResponse{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", picture='" + picture + '\'' +
+                ", currentTeams=" + currentTeams +
+                '}';
+    }
+
+    public boolean isWorking() {
+        return working;
+    }
+
+    public void setWorking(boolean working) {
+        this.working = working;
+    }
+
+    public int getJobProfile() {
+        return jobProfile;
+    }
+
+    public void setJobProfile(int jobProfile) {
+        this.jobProfile = jobProfile;
+    }
+
+    public boolean isDrisler() {
+        return drisler;
+    }
+
+    public void setDrisler(boolean drisler) {
+        this.drisler = drisler;
     }
 }

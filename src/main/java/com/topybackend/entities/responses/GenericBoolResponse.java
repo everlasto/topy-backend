@@ -5,9 +5,15 @@ package com.topybackend.entities.responses;
  */
 public class GenericBoolResponse {
     boolean flag;
+    public String message;
 
     public GenericBoolResponse(boolean b) {
         flag = b;
+    }
+
+    public GenericBoolResponse(boolean b, String msg) {
+        flag = b;
+        message = msg;
     }
 
     public boolean isFlag() {

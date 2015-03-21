@@ -1,10 +1,15 @@
 package com.topybackend.entities.responses;
 
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by prashanth.a on 18/03/15.
  */
+@Document(collection = "teams")
 public class TeamDetailResponse extends TeamMinimalDetailResponse {
 
     int from_date;
@@ -21,6 +26,7 @@ public class TeamDetailResponse extends TeamMinimalDetailResponse {
     List<BadgeResponse> badges;
 
     public TeamDetailResponse() {
+        members = new ArrayList<ProfileMinimalResponse>();
     }
 
     public int getFrom_date() {
@@ -94,4 +100,25 @@ public class TeamDetailResponse extends TeamMinimalDetailResponse {
     public void setBadges(List<BadgeResponse> badges) {
         this.badges = badges;
     }
+
+    @Override
+    public String toString() {
+        return "TeamDetailResponse{" +
+                "from_date=" + from_date +
+                ", to_date=" + to_date +
+                ", owners=" + owners +
+                ", members=" + members +
+                ", updates=" + updates +
+                ", followers=" + followers +
+                ", applicants=" + applicants +
+                ", organization=" + organization +
+                ", badges=" + badges +
+                '}';
+    }
+
+    @Transient
+    public boolean isMinimal = false;
+    @Transient
+    public boolean canEdit = false;
+
 }
